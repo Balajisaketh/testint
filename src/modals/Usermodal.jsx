@@ -27,7 +27,7 @@ const Usermodal = ({ onClose, onSubmit }) => {
             id="friendName"
             value={inputValue} // Value is bound to the state
             onChange={handleInputChange} 
-            placeholder="Enter your friend name here"
+            placeholder="Enter Friend Name"
           />
           <div className="flex lfex-row justify-content-center">
 
