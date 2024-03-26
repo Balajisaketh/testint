@@ -31,7 +31,7 @@ const Usermodal = ({ onClose, onSubmit }) => {
           />
           <div className="flex lfex-row justify-content-center">
 
-          <button type="submit" className="submit-btn" onClick={addFriendInput}>
+          <button type="submit" className="submit-btn justify-center" onClick={addFriendInput}>
             Add friend
           </button>
           </div>
