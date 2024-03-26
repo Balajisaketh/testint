@@ -63,6 +63,7 @@ function Main(){
   <button type="submit" class="btn  border-black bg-blue-300 w-[30%] rounded-md p-4 font-semibold" onClick={toggleModal}>Add people</button>
   <button type="button" class="btn  border-black bg-orange-300 w-[30%] rounded-md font-semibold" onClick={()=>{
     console.log("i am amount from check",amount,friends,Bill)
+    
     disp(addOrderinfo({amountvalue:amount,nooffrnds:friends,billname:Bill}))
   }}>Add order</button>
   
@@ -81,12 +82,12 @@ function Main(){
                 return(
                     <>
                     <div className="col-span-6 w-[50vw] mx-auto border-2 border-black shadow-md rounded-md m-5">
-                        <p className="text-lg font-semibold text-left mx-10 p-3">Bill name:<span className="text-bold text-md">{val?.Billdetails}</span></p>
+                        <h1 className="text-lg font-semibold text-left mx-10 p-3">Bill name:<span className="text-bold text-md">{val?.Billdetails}</span></h1>
                         {
                             val?.friends?.map((vl,indx)=>{
                                 console.log(vl,"i am rendr")
                                 return(
-                                <p className="text-left mx-4 text-lg">{vl}<span className="mx-5 text-lg">Billshare:{val?.amount}</span></p>
+                                <p className="text-left mx-10 text-lg font-semibold">{vl}<span className="mx-5 text-lg">Billshare: {val?.amount}</span></p>
                                 )
 
                             })
