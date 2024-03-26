@@ -2,7 +2,7 @@ import Home from "./Home"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { addOrderinfo } from "../redux/friendSlice";
+import { addOrderinfo, setAmount } from "../redux/friendSlice";
 import imagemobile from "../images/Three-mobiles-min.webp"
 import Usermodal from "../modals/Usermodal";
 function Main(){
@@ -24,7 +24,11 @@ function Main(){
       const handleOpenModal = () => {
         setShowModal(true);
       };
-    
+      const clearForm = () => {
+        setBill('')
+        SetAmount(0)
+        console.log("Amount after clearing:", amount); 
+      };
       const handleCloseModal = () => {
         setShowModal(false);
       };
@@ -33,9 +37,11 @@ function Main(){
     return(
         <>
            {showModal && <Usermodal onClose={handleCloseModal} onSubmit={handleOpenModal} />}
-
+           <h1 className="text-xl font-bold mx-auto py-3 text-yellow-500">Start Your Savings Journey By Splitting</h1>
         <div className="flex flex-column h-screen bg-[#F0FFFF]">
-           <div className="col-span-6  h-auto w-[40vw] my-5">
+            
+           <div className="col-span-6  h-auto w-[40vw] my-3">
+           
             <div className="my-28">
 
          <img src={imagemobile} height={1000} width={1000}/>
@@ -49,7 +55,7 @@ function Main(){
         <label for="name" className="form-label mb-6 font-semibold justify-content-start">Bill Name</label>
         <div class="mb-5">
     
-    <input type="text" placeholder="Bill details" className="mt-4 form-control border border-black w-[75%] text-center" id="name" onChange={(e)=>setBill(e.target.value)}/>
+    <input type="text" value={Bill} placeholder="Bill details" className="mt-4 form-control border border-black w-[75%] text-center" id="name" onChange={(e)=>setBill(e.target.value)}/>
   </div>
 
         </div>
@@ -57,15 +63,16 @@ function Main(){
     <label for="exampleInputPassword1" className="form-label mb-6 font-semibold justify-content-start">Amount</label>
   <div class="mb-5">
     
-    <input type="number" placeholder="Please Enter your amount" className="mt-4 form-control border border-black w-[75%] text-center" id="exampleInputPassword1" onChange={(e)=>SetAmount(e.target.value)}/>
+    <input type="number"  value={amount} placeholder="Please Enter your amount" className="mt-4 form-control border border-black w-[75%] text-center" id="exampleInputPassword1" onChange={(e)=>SetAmount(e.target.value)}/>
   </div>
   <div class="flex flex-row space-x-4 justify-center pb-10 pt-3 mb-5">
-  <button type="submit" class="btn  border-black bg-blue-300 w-[30%] rounded-md p-4 font-semibold" onClick={toggleModal}>Add people</button>
-  <button type="button" class="btn  border-black bg-orange-300 w-[30%] rounded-md font-semibold" onClick={()=>{
+  <button type="submit" class="btn  border-black bg-blue-300 w-[30%] rounded-md p-4 font-semibold " onClick={toggleModal}>Add people</button>
+  <button type="button" class="btn  border-black bg-orange-300 w-[30%] rounded-md font-semibold text-white" onClick={()=>{
     console.log("i am amount from check",amount,friends,Bill)
-    
+
     disp(addOrderinfo({amountvalue:amount,nooffrnds:friends,billname:Bill}))
-  }}>Add order</button>
+    clearForm()
+  }}>Split Bill</button>
   
   </div>
 </form>  
@@ -82,7 +89,7 @@ function Main(){
                 return(
                     <>
                     <div className="col-span-6 w-[50vw] mx-auto border-2 border-black shadow-md rounded-md m-5">
-                        <h1 className="text-lg font-semibold text-left mx-10 p-3">Bill name:<span className="text-bold text-md">{val?.Billdetails}</span></h1>
+                        <h1 className="text-lg font-semibold text-left mx-8 p-3">Bill Name:<span className="text-bold text-md">{val?.Billdetails}</span></h1>
                         {
                             val?.friends?.map((vl,indx)=>{
                                 console.log(vl,"i am rendr")
